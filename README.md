@@ -40,7 +40,4 @@ shop cannot be reached, the bag is kept and the visitor gets direct product link
   real URLs are supplied.
 - No new medical claim has been added anywhere.
 
-Photography: product shots are CBX Medical's own. The plant background and the
-leaf cut-outs in `leaves/` are real photographs from Pexels, free for commercial
-use and modification without attribution — cut out and colour-graded for this
-design. Swap in CBX's own plant photography when it exists.
+Product photography: CBX Medical. Botanical cover: generated for this design.
