@@ -13,25 +13,9 @@
 </head>
 <body>
 
-<svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <defs>
-    <path id="leaflet" d="M0 0 C5 -10 8 -20 9 -28 L15 -32 L10 -40 L17 -46 L11 -54 L17 -60 L10 -68 L13 -75 L6 -83 L7 -90 L0 -102 L-7 -90 L-6 -83 L-13 -75 L-10 -68 L-17 -60 L-11 -54 L-17 -46 L-10 -40 L-15 -32 L-9 -28 C-8 -20 -5 -10 0 0 Z"/>
-    <linearGradient id="leafShade" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#06120C"/><stop offset=".55" stop-color="#113222"/><stop offset="1" stop-color="#2E5B3C"/>
-    </linearGradient>
-    <g id="hemp">
-      <path d="M0 2 L0 40" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <use href="#leaflet" transform="scale(1.2)"/>
-      <use href="#leaflet" transform="rotate(32) scale(1.02)"/><use href="#leaflet" transform="rotate(-32) scale(1.02)"/>
-      <use href="#leaflet" transform="rotate(62) scale(.82)"/><use href="#leaflet" transform="rotate(-62) scale(.82)"/>
-      <use href="#leaflet" transform="rotate(92) scale(.56)"/><use href="#leaflet" transform="rotate(-92) scale(.56)"/>
-    </g>
-  </defs>
-</svg>
 
 <nav class="nav">
   <a class="mark" href="#top">
-    <svg viewBox="-85 -128 170 170" fill="currentColor" aria-hidden="true"><use href="#hemp"/></svg>
     CBX <em>MEDICAL</em>
   </a>
   <div class="navlinks">
@@ -50,11 +34,6 @@
   <div class="stage" id="stage">
     <div class="canopy" id="canopy"></div>
     <div class="veil"></div>
-
-    <div class="leaves mid" id="midLeaves" aria-hidden="true">
-      <svg class="lf1" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
-      <svg class="lf2" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
-    </div>
 
     <div class="bottlewrap" id="bottleWrap">
       <span class="glowback"></span>
@@ -124,11 +103,6 @@
           <ellipse class="ring" id="ring2" cx="150" cy="848" rx="130" ry="28" opacity="0"/>
         </g>
       </svg>
-    </div>
-
-    <div class="leaves fore" id="foreLeaves" aria-hidden="true">
-      <svg class="lf3" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
-      <svg class="lf4" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
     </div>
 
     <div class="dim" id="dim" aria-hidden="true"></div>
@@ -265,7 +239,7 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   var act = document.getElementById('act'), stage = document.getElementById('stage');
   if (!act || !stage) return;   /* sub-pages have no opening act */
-  var canopy = document.getElementById('canopy'), mid = document.getElementById('midLeaves'), fore = document.getElementById('foreLeaves');
+  var canopy = document.getElementById('canopy');
   var wrap = document.getElementById('bottleWrap'), pip = document.getElementById('pipette'), cue = document.getElementById('scrollcue');
   var beats = [].slice.call(document.querySelectorAll('.beat'));
   var dropG = document.getElementById('dropG'), dropShape = document.getElementById('dropShape');
@@ -305,11 +279,6 @@
     /* parallax: background slow, mid medium, foreground fastest */
     canopy.style.setProperty('--bgZoom', (1 + 0.20 * p).toFixed(4));
     canopy.style.setProperty('--bgY', (-2.5 * p).toFixed(2) + '%');
-    mid.style.setProperty('--midY', (-16 * p).toFixed(2) + 'svh');
-    mid.style.setProperty('--midS', (1 + 0.16 * p).toFixed(4));
-    fore.style.setProperty('--foreY', (-62 * p).toFixed(2) + 'svh');
-    fore.style.setProperty('--foreS', (1 + 0.65 * p).toFixed(4));
-    fore.style.setProperty('--foreO', clamp(1.25 - 1.5 * p, 0, 1).toFixed(3));
 
     /* the bottle rides the camera */
     var bx = lerp(K.bx[i], K.bx[i+1], e), by = lerp(K.by[i], K.by[i+1], e);

@@ -44,7 +44,6 @@ img{display:block;max-width:100%}
   backdrop-filter:blur(14px);border-bottom:1px solid var(--line2);
 }
 .mark{display:flex;align-items:center;gap:9px;text-decoration:none;font:600 19px/1 var(--d);letter-spacing:.07em}
-.mark svg{width:19px;height:19px;color:var(--gold);flex:none}
 .mark em{font:300 11px/1 var(--s);letter-spacing:.22em;opacity:.6;font-style:normal}
 .navlinks{display:flex;align-items:center;gap:clamp(12px,2vw,28px);font-size:13.5px;letter-spacing:.06em}
 .navlinks a{text-decoration:none;opacity:.78;transition:opacity .25s}
@@ -87,15 +86,6 @@ img{display:block;max-width:100%}
   background-image:radial-gradient(rgba(255,255,255,.08) .5px,transparent .5px);
   background-size:3px 3px;
 }
-
-.leaves{position:absolute;inset:0;pointer-events:none;will-change:transform}
-.leaves svg{position:absolute;color:#0C1F15}
-.mid{transform:translate3d(0,var(--midY,0),0) scale(var(--midS,1))}
-.fore{transform:translate3d(0,var(--foreY,0),0) scale(var(--foreS,1));filter:blur(11px);opacity:calc(var(--foreO,1) * .72);z-index:6}
-.lf1{left:-14%;top:-18%;width:46vw;min-width:360px;opacity:.85;transform:rotate(14deg)}
-.lf2{right:-10%;top:-24%;width:38vw;min-width:300px;opacity:.6;transform:rotate(-28deg)}
-.lf3{left:-18%;bottom:-30%;width:54vw;min-width:420px;opacity:.95;transform:rotate(-160deg)}
-.lf4{right:-16%;bottom:-26%;width:48vw;min-width:380px;opacity:.9;transform:rotate(150deg)}
 
 /* the bottle */
 .bottlewrap{
@@ -236,16 +226,11 @@ img{display:block;max-width:100%}
   padding:calc(var(--navh) + clamp(54px,9vh,112px)) 0 clamp(34px,6vh,70px);
   border-bottom:1px solid var(--line2);
 }
-.pagehead .leafmark{
-  position:absolute;right:-7%;top:-36%;width:clamp(260px,34vw,560px);
-  color:#0E2217;pointer-events:none;transform:rotate(18deg);
-}
 .pagehead h1{font-size:clamp(2.4rem,6vw,5rem);letter-spacing:-.035em;margin-bottom:.32em;position:relative}
 .pagehead .kicker,.pagehead .lede{position:relative}
 .pagehead .lede{max-width:46ch}
 .pagehead + .store,.pagehead + .flow{padding-top:clamp(42px,6vh,78px)}
 .navlinks a[aria-current=page]{opacity:1;color:var(--gold2)}
-@media(max-width:760px){.pagehead .leafmark{right:-30%;top:-12%;width:300px;opacity:.7}}
 
 /* ---------------- flow sections ---------------- */
 section.flow{padding:clamp(64px,9vh,130px) 0;scroll-margin-top:var(--navh)}
@@ -359,7 +344,6 @@ dialog#bag::backdrop{background:rgba(3,9,6,.78);backdrop-filter:blur(3px)}
   .strengths button{padding:12px 16px;min-width:60px}
   .b3 .inner{padding:10vh 0 9vh}
   .b3 p{align-self:flex-start;max-width:28ch;font-size:.92rem}
-  .lf2,.lf4{display:none}
   .fore{filter:blur(4px)}
   dialog#bag{width:100%;border-left:0}
   .legal{grid-template-columns:1fr}
