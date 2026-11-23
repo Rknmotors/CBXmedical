@@ -40,4 +40,7 @@ shop cannot be reached, the bag is kept and the visitor gets direct product link
   real URLs are supplied.
 - No new medical claim has been added anywhere.
 
-Product photography: CBX Medical. Botanical cover: generated for this design.
+Product photography: CBX Medical. Every product in `products/` is cut out on a
+transparent background and trimmed to the product itself, so the cards can drop
+their tiles and the products scale alike. The four MetaFibro bottles were shot on
+a table and were cut out here; if CBX has packshots of them, drop those in instead. Botanical cover: generated for this design.
