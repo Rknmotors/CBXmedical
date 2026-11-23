@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CBX Medical — botanical formulations, made in Belgium</title>
+<meta name="description" content="CBX Medical develops three ranges of botanical formulations — CanFlex, MetaFibro and CanRelax — made in Belgium and sold through pharmacies.">
+<meta name="theme-color" content="#08130D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:ital,wght@0,300..500;1,300..400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="botanical.css">
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <path id="leaflet" d="M0 0 C5 -10 8 -20 9 -28 L15 -32 L10 -40 L17 -46 L11 -54 L17 -60 L10 -68 L13 -75 L6 -83 L7 -90 L0 -102 L-7 -90 L-6 -83 L-13 -75 L-10 -68 L-17 -60 L-11 -54 L-17 -46 L-10 -40 L-15 -32 L-9 -28 C-8 -20 -5 -10 0 0 Z"/>
+    <linearGradient id="leafShade" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#06120C"/><stop offset=".55" stop-color="#113222"/><stop offset="1" stop-color="#2E5B3C"/>
+    </linearGradient>
+    <g id="hemp">
+      <path d="M0 2 L0 40" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <use href="#leaflet" transform="scale(1.2)"/>
+      <use href="#leaflet" transform="rotate(32) scale(1.02)"/><use href="#leaflet" transform="rotate(-32) scale(1.02)"/>
+      <use href="#leaflet" transform="rotate(62) scale(.82)"/><use href="#leaflet" transform="rotate(-62) scale(.82)"/>
+      <use href="#leaflet" transform="rotate(92) scale(.56)"/><use href="#leaflet" transform="rotate(-92) scale(.56)"/>
+    </g>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <a class="mark" href="#top">
+    <svg viewBox="-85 -128 170 170" fill="currentColor" aria-hidden="true"><use href="#hemp"/></svg>
+    CBX <em>MEDICAL</em>
+  </a>
+  <div class="navlinks">
+    <a href="#ranges" class="always">Shop</a>
+    <a href="#ranges" class="hideit">Shop</a>
+    <a href="#commitment" class="hideit">Commitment</a>
+    <a href="#professionals" class="hideit">Professionals</a>
+    <a href="#journal" class="hideit">Journal</a>
+    <a href="#ranges" class="navbtn">Shop the collection</a>
+    <button type="button" class="navbtn filled" id="openBag" aria-haspopup="dialog">Bag (<span id="count">0</span>)</button>
+  </div>
+</nav>
+
+<main id="top">
+
+<div class="act" id="act">
+  <div class="stage" id="stage">
+    <div class="canopy" id="canopy"></div>
+    <div class="veil"></div>
+
+    <div class="leaves mid" id="midLeaves" aria-hidden="true">
+      <svg class="lf1" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
+      <svg class="lf2" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
+    </div>
+
+    <div class="bottlewrap" id="bottleWrap">
+      <span class="glowback"></span>
+      <img id="heroShot" src="products/d10.webp" alt="CanRelax Drop 10% in amber glass with pipette">
+    </div>
+
+    <div class="pipette" id="pipette" aria-hidden="true">
+      <svg viewBox="0 0 300 960">
+        <defs>
+          <linearGradient id="glassG" x1="0" x2="1">
+            <stop offset="0" stop-color="#3B2608"/><stop offset=".16" stop-color="#9C6B1E"/>
+            <stop offset=".38" stop-color="#E7B95C" stop-opacity=".9"/><stop offset=".56" stop-color="#B07E27"/>
+            <stop offset=".82" stop-color="#5B3C0F"/><stop offset="1" stop-color="#2A1B05"/>
+          </linearGradient>
+          <linearGradient id="oilG" x1="0" x2="1">
+            <stop offset="0" stop-color="#6A3F09"/><stop offset=".28" stop-color="#D9A93A"/>
+            <stop offset=".55" stop-color="#9A6714"/><stop offset="1" stop-color="#4A2D05"/>
+          </linearGradient>
+          <linearGradient id="bulbG" x1="0" x2="1">
+            <stop offset="0" stop-color="#05100A"/><stop offset=".3" stop-color="#23402F"/>
+            <stop offset=".58" stop-color="#101F17"/><stop offset="1" stop-color="#030806"/>
+          </linearGradient>
+          <linearGradient id="sheen" x1="0" x2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="poolG" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#F7E2A8"/><stop offset=".42" stop-color="#D4A53C"/><stop offset="1" stop-color="#4A2D05"/>
+          </radialGradient>
+          <radialGradient id="glowG" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#D4A53C" stop-opacity=".6"/><stop offset="1" stop-color="#D4A53C" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <ellipse id="poolGlow" cx="150" cy="848" rx="268" ry="146" fill="url(#glowG)" opacity="0"/>
+
+        <!-- rubber bulb -->
+        <path d="M112 36 h76 q22 0 22 24 v96 q0 24-22 24 h-76 q-22 0-22-24 V60 q0-24 22-24 Z" fill="url(#bulbG)"/>
+        <ellipse cx="150" cy="40" rx="38" ry="7" fill="#2E4A38"/>
+        <rect x="124" y="56" width="7" height="110" rx="3" fill="#8FA596" opacity=".22"/>
+        <rect x="104" y="178" width="92" height="18" rx="8" fill="#0A150F"/>
+
+        <!-- glass barrel -->
+        <rect x="128" y="196" width="44" height="406" rx="8" fill="url(#glassG)" opacity=".4"/>
+        <rect x="128" y="196" width="44" height="406" rx="8" fill="none" stroke="#F7E2A8" stroke-opacity=".22"/>
+        <rect x="134" y="392" width="32" height="210" fill="url(#oilG)" opacity=".88"/>
+        <rect x="134" y="389" width="32" height="5" fill="#F7E2A8" opacity=".4"/>
+        <rect x="136" y="208" width="7" height="382" rx="4" fill="url(#sheen)" opacity=".8"/>
+        <rect x="160" y="230" width="3" height="340" rx="2" fill="#F7E2A8" opacity=".22"/>
+
+        <!-- tapered tip -->
+        <path d="M128 602 L143 706 q7 14 14 0 L172 602 Z" fill="url(#glassG)" opacity=".52"/>
+        <path d="M128 602 L143 706 q7 14 14 0 L172 602 Z" fill="none" stroke="#F7E2A8" stroke-opacity=".2"/>
+        <path d="M139 614 L147 700 q3 7 6 0 L161 614 Z" fill="url(#oilG)" opacity=".9"/>
+        <path d="M141 618 L146 690" stroke="#F7E2A8" stroke-opacity=".3" stroke-width="2.5" fill="none"/>
+
+        <!-- the drop -->
+        <g id="dropG">
+          <path id="dropShape" d="M150 712 q-19 24-19 38 a19 19 0 0 0 38 0 q0-14-19-38 Z" fill="url(#oilG)"/>
+          <ellipse cx="143" cy="744" rx="5" ry="8" fill="#F7E2A8" opacity=".6"/>
+        </g>
+
+        <!-- the pool it falls into -->
+        <ellipse id="pool" cx="150" cy="848" rx="138" ry="30" fill="url(#poolG)" opacity="0"/>
+        <ellipse cx="150" cy="842" rx="128" ry="23" fill="#F7E2A8" opacity="0" id="poolHi"/>
+        <g fill="none" stroke="#F7E2A8" stroke-width="2.2">
+          <ellipse class="ring" id="ring1" cx="150" cy="848" rx="130" ry="28" opacity="0"/>
+          <ellipse class="ring" id="ring2" cx="150" cy="848" rx="130" ry="28" opacity="0"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="leaves fore" id="foreLeaves" aria-hidden="true">
+      <svg class="lf3" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
+      <svg class="lf4" viewBox="-85 -128 170 170" fill="url(#leafShade)"><use href="#hemp"/></svg>
+    </div>
+
+    <div class="dim" id="dim" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- beat 0 -->
+    <section class="beat b0 on" data-beat="0">
+      <div class="inner">
+        <p class="eyebrow"><span></span>CBX MEDICAL · CHARLEROI, BELGIUM</p>
+        <h1>Botanical<em>formulations.</em></h1>
+        <p class="say">Oils, gels, patches and capsules. Made in Belgium, sold through pharmacies, and documented down to the batch.</p>
+        <div class="cta">
+          <a class="pill" href="#ranges">Shop the collection</a>
+          <a class="pill ghost" href="#professionals">For health professionals</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- beat 1 -->
+    <section class="beat b1" data-beat="1">
+      <div class="inner">
+        <div class="col">
+          <h2>Three ranges,<br>one standard</h2>
+          <p>CanFlex for mobility, MetaFibro for muscle fibres, CanRelax for relaxation. Each one answers a single use, in a single family of formats.</p>
+          <ul class="specs">
+            <li><span>CanFlex</span><span>3 products</span></li>
+            <li><span>MetaFibro®</span><span>4 products</span></li>
+            <li><span>CanRelax</span><span>5 products</span></li>
+            <li><span>Formats</span><span>gel · oil · patch · capsules</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- beat 2 -->
+    <section class="beat b2" data-beat="2">
+      <div class="inner">
+        <div class="panel">
+          <p class="kicker">CANRELAX DROP</p>
+          <h2>Choose your concentration</h2>
+          <div class="strengths" id="strengths" role="group" aria-label="Choose a concentration"></div>
+          <div class="readout">
+            <div><div class="k">CONCENTRATION</div><div class="v" id="roConc">10%</div></div>
+            <div><div class="k">BOTTLE</div><div class="v" id="roVol">10 ml</div></div>
+            <div><div class="k">PRICE</div><div class="v" id="roPrice">€64.90</div></div>
+          </div>
+          <button type="button" class="pill" id="addStrength">Add to bag — €64.90</button>
+          <p class="note">Four concentrations of the same oil in amber glass. <a id="strengthLink" href="https://cbxmedical.com/en/products/canrelax-drop-10" target="_blank" rel="noopener">See it in the official shop</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- beat 3 -->
+    <section class="beat b3" data-beat="3">
+      <div class="inner">
+        <h2>One drop at a time</h2>
+        <p>Amber glass and a glass pipette, because light and heat are what cannabinoids like least. Every bottle carries its batch number.</p>
+      </div>
+    </section>
+
+    <a class="scrollcue" id="scrollcue" href="#ranges"><i></i>SCROLL</a>
+  </div>
+  <div class="track"></div>
+</div>
+
+<section class="store" id="ranges">
+  <div class="wrap">
+    <div class="shophead">
+      <div>
+        <p class="kicker">THE BOTANICAL COLLECTION</p>
+        <h2 class="h2">The shop</h2>
+        <p class="lede">Twelve products across three ranges. Prices are the current catalogue prices; CBX Medical confirms availability and delivery at checkout.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by range"></div>
+    </div>
+    <div id="grid"></div>
+  </div>
+</section>
+
+<section class="flow alt" id="commitment">
+  <div class="wrap">
+    <p class="kicker">WHERE WE STAND</p>
+    <h2 class="h2">Checkable, not persuasive</h2>
+    <p class="lede">Four things about CBX Medical that anyone can verify: a company number, a distribution channel, a training record and a research programme.</p>
+    <div class="proof">
+      <div><b>In pharmacies</b><span>The ranges are distributed through Belgian pharmacies.</span></div>
+      <div><b>3,000+</b><span>Health professionals trained by CBX.</span></div>
+      <div><b>Public R&amp;D</b><span>Projects run with Belgian universities and hospitals.</span></div>
+      <div><b>Charleroi</b><span>CBX Medical SRL — BE 0750.926.884.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap quote">
+    <div>
+      <p class="kicker">LES ESCALES POSITIVES</p>
+      <p class="lede">Free gatherings, open to everyone, where practitioners present approaches that sit alongside conventional care — not instead of it.</p>
+      <a class="pill ghost" href="https://cbxmedical.com/en" target="_blank" rel="noopener" style="margin-top:22px">See upcoming dates</a>
+    </div>
+    <div>
+      <blockquote>“Managing a chronic condition well means supporting the whole person, so that their comfort improves and they can live each moment fully.”</blockquote>
+      <cite>Dr. Frederic Louis, pain specialist</cite>
+    </div>
+  </div>
+</section>
+
+<section class="flow alt" id="professionals">
+  <div class="wrap">
+    <p class="kicker">FOR CARE TEAMS</p>
+    <h2 class="h2">We train before we sell</h2>
+    <div class="duo">
+      <div class="card2">
+        <div class="bignum">3,000+</div>
+        <h3>Health professionals trained</h3>
+        <p>Doctors, pharmacists and hospital teams. The training covers cannabinoids, chronic pain and whole-person support, and it is free for care teams.</p>
+        <a class="pill ghost" href="https://cbxmedical.com/en" target="_blank" rel="noopener">Register for a session</a>
+      </div>
+      <div class="card2">
+        <h3>R&amp;D with the public sector</h3>
+        <p>Research projects with Belgian universities and hospitals. Protocols, partners and the status of each project are set out in this section rather than summarised in a claim.</p>
+        <a class="pill ghost" href="https://cbxmedical.com/en" target="_blank" rel="noopener">Explore our R&amp;D</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow" id="journal">
+  <div class="wrap">
+    <p class="kicker">JOURNAL</p>
+    <h2 class="h2">What we publish</h2>
+    <div class="arts">
+      <a class="art" href="https://cbxmedical.com/en" target="_blank" rel="noopener"><div class="tp">FEATURE</div><h4>Understanding fibromyalgia: diagnosis and care</h4></a>
+      <a class="art" href="https://cbxmedical.com/en" target="_blank" rel="noopener"><div class="tp">RESEARCH</div><h4>Cannabinoids in chronic pain management</h4></a>
+      <a class="art" href="https://cbxmedical.com/en" target="_blank" rel="noopener"><div class="tp">RESEARCH</div><h4>Opioids: history, types and mechanisms</h4></a>
+      <a class="art" href="https://cbxmedical.com/en" target="_blank" rel="noopener"><div class="tp">RESEARCH</div><h4>The endocannabinoid system, learning and memory</h4></a>
+    </div>
+  </div>
+</section>
+
+<section class="flow alt">
+  <div class="wrap">
+    <div class="legal">
+      <div class="badge">ADULTS<br>ONLY</div>
+      <div>
+        <p>CBX Medical products are food supplements and cosmetics. They are not medicines and do not replace medical treatment. No therapeutic or health claim is made on this site.</p>
+        <p>If you take medication, are pregnant or are breastfeeding, speak to your doctor or pharmacist before using a supplement. This site is not a substitute for medical advice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div>
+        <h3>CBX</h3>
+        <p class="fline">CBX Medical SRL — Charleroi, Belgium. BE 0750.926.884.</p>
+      </div>
+      <div class="fcol">
+        <h4>RANGES</h4>
+        <a href="#ranges" data-range="CanFlex">CanFlex</a>
+        <a href="#ranges" data-range="MetaFibro">MetaFibro®</a>
+        <a href="#ranges" data-range="CanRelax">CanRelax</a>
+      </div>
+      <div class="fcol">
+        <h4>ABOUT</h4>
+        <a href="#commitment">Where we stand</a><a href="#professionals">R&amp;D</a><a href="#journal">Journal</a>
+      </div>
+      <div class="fcol">
+        <h4>INFORMATION</h4>
+        <a href="mailto:info@cbxmedical.com">info@cbxmedical.com</a>
+        <a href="https://cbxmedical.com/en" target="_blank" rel="noopener">Official shop</a>
+        <a href="https://cbxmedical.com/en" target="_blank" rel="noopener">Shipping &amp; returns</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© <span id="yr">2026</span> CBX MEDICAL SRL — BELGIUM</span>
+      <span>FOOD SUPPLEMENTS &amp; COSMETICS · NOT A MEDICINE · ADULTS ONLY</span>
+    </div>
+  </div>
+</footer>
+
+<dialog id="bag" aria-labelledby="bagtitle">
+  <div class="bagin">
+    <div class="baghead">
+      <h2 id="bagtitle">Your bag</h2>
+      <button type="button" id="closeBag" aria-label="Close bag">×</button>
+    </div>
+    <div id="baglines"></div>
+    <div class="bagfoot" id="bagfoot"></div>
+    <p id="feedback" role="status"></p>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="shop.js" defer></script>
+<script>
+/* The camera move. One continuous pass over four beats. */
+(function(){
+  'use strict';
+  var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
+
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  var act = document.getElementById('act'), stage = document.getElementById('stage');
+  var canopy = document.getElementById('canopy'), mid = document.getElementById('midLeaves'), fore = document.getElementById('foreLeaves');
+  var wrap = document.getElementById('bottleWrap'), pip = document.getElementById('pipette'), cue = document.getElementById('scrollcue');
+  var beats = [].slice.call(document.querySelectorAll('.beat'));
+  var dropG = document.getElementById('dropG'), dropShape = document.getElementById('dropShape');
+  var pool = document.getElementById('pool'), poolGlow = document.getElementById('poolGlow');
+  var ring1 = document.getElementById('ring1'), ring2 = document.getElementById('ring2');
+  var dim = document.getElementById('dim');
+
+  if (reduce.matches) { beats.forEach(function(b){ b.classList.add('on'); }); return; }
+
+  /* per-beat camera keys: x (vw), y (svh), scale, height (svh), rotation */
+  var KEY = {
+    bx:[20, 2, -24, -24], by:[2, 0, 0, 0], bs:[1, 1.18, .96, .9],
+    bh:[54, 60, 52, 52], br:[6, 2, -3, -3]
+  };
+  var MKEY = { bx:[0,0,0,0], by:[-17, -14, -17, -17], bs:[.86, 1, .82, .78], bh:[34, 38, 32, 32], br:[6, 2, -3, -3] };
+
+  var small = matchMedia('(max-width:760px)'), isSmall = small.matches;
+  if (small.addEventListener) small.addEventListener('change', function(e){ isSmall = e.matches; frame(); });
+
+  function lerp(a,b,t){ return a + (b-a)*t; }
+  function clamp(v,a,b){ return v<a?a:v>b?b:v; }
+  function smooth(t){ return t*t*(3-2*t); }
+
+  var p = 0, ticking = false;
+
+  function frame(){
+    var rect = act.getBoundingClientRect();
+    var total = act.offsetHeight - window.innerHeight;
+    p = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
+
+    var n = beats.length, seg = p * (n - 1);
+    var i = Math.min(n - 2, Math.floor(seg)), t = seg - i;
+    /* dwell on each beat, then travel */
+    var e = smooth(clamp((t - 0.22) / 0.56, 0, 1));
+    var K = isSmall ? MKEY : KEY;
+
+    /* parallax: background slow, mid medium, foreground fastest */
+    canopy.style.setProperty('--bgZoom', (1 + 0.20 * p).toFixed(4));
+    canopy.style.setProperty('--bgY', (-2.5 * p).toFixed(2) + '%');
+    mid.style.setProperty('--midY', (-16 * p).toFixed(2) + 'svh');
+    mid.style.setProperty('--midS', (1 + 0.16 * p).toFixed(4));
+    fore.style.setProperty('--foreY', (-62 * p).toFixed(2) + 'svh');
+    fore.style.setProperty('--foreS', (1 + 0.65 * p).toFixed(4));
+    fore.style.setProperty('--foreO', clamp(1.25 - 1.5 * p, 0, 1).toFixed(3));
+
+    /* the bottle rides the camera */
+    var bx = lerp(K.bx[i], K.bx[i+1], e), by = lerp(K.by[i], K.by[i+1], e);
+    var bs = lerp(K.bs[i], K.bs[i+1], e), bh = lerp(K.bh[i], K.bh[i+1], e), br = lerp(K.br[i], K.br[i+1], e);
+    wrap.style.setProperty('--bx', bx.toFixed(2) + 'vw');
+    wrap.style.setProperty('--by', by.toFixed(2) + 'svh');
+    wrap.style.setProperty('--bs', bs.toFixed(3));
+    wrap.style.setProperty('--bh', bh.toFixed(2) + 'svh');
+    wrap.style.setProperty('--br', br.toFixed(2) + 'deg');
+    wrap.style.setProperty('--bglow', (0.35 + 0.5 * Math.min(1, p * 2)).toFixed(2));
+
+    /* hand over from bottle to pipette across the last beat */
+    var d = (i === n - 2) ? smooth(t) : 0;
+    var hand = clamp((d - 0.04) / 0.26, 0, 1);
+    wrap.style.setProperty('--bo', (1 - hand).toFixed(3));
+    pip.style.setProperty('--po', hand.toFixed(3));
+    dim.style.setProperty('--dimO', (hand * 0.78).toFixed(3));
+    pip.style.setProperty('--ps', (0.94 + 0.1 * d).toFixed(3));
+    pip.style.setProperty('--ph', (isSmall ? 64 : 84) + 'svh');
+
+    /* the drop: forms, hangs, falls, lands */
+    var grow = clamp((d - 0.14) / 0.32, 0, 1);
+    var hang = clamp((d - 0.46) / 0.08, 0, 1);
+    var fall = clamp((d - 0.54) / 0.28, 0, 1);
+    var land = clamp((d - 0.82) / 0.18, 0, 1);
+    var fe = fall * fall;                        /* gravity */
+    var sx = lerp(0.18, 1.42, smooth(grow)) * lerp(1, 1.14, fe);
+    var sy = lerp(0.12, 1.42, smooth(grow)) * lerp(1, 1.45, fe) * lerp(1, 0.22, land);
+    var ty = lerp(0, 108, fe) + hang * 2.5;
+    dropG.setAttribute('transform', 'translate(0,' + ty.toFixed(1) + ') translate(150,716) scale(' + sx.toFixed(3) + ',' + sy.toFixed(3) + ') translate(-150,-716)');
+    dropG.setAttribute('opacity', (grow > 0 ? clamp(grow * 3, 0, 1) * (1 - land) : 0).toFixed(3));
+
+    pool.setAttribute('opacity', (0.9 * clamp(d / 0.5, 0, 1)).toFixed(3));
+    document.getElementById('poolHi').setAttribute('opacity', (0.3 * land).toFixed(3));
+    poolGlow.setAttribute('opacity', (0.85 * clamp(d / 0.5, 0, 1) * (0.55 + 0.75 * land)).toFixed(3));
+    [[ring1, 0], [ring2, 0.18]].forEach(function(pair){
+      var r = clamp((land - pair[1]) / (1 - pair[1]), 0, 1);
+      pair[0].setAttribute('opacity', (r > 0 ? Math.min(1, r * 6) * (1 - r) * 1.5 : 0).toFixed(3));
+      pair[0].setAttribute('transform', 'translate(150,848) scale(' + (0.22 + r * 2.3).toFixed(3) + ') translate(-150,-848)');
+    });
+
+    /* beats cross-fade */
+    /* on the closing beat the panel hands over on the same clock as the pipette,
+       so the two never sit on screen together */
+    var outgoing = clamp(1 - e * 3, 0, 1), incoming = clamp((e - 0.55) * 2.4, 0, 1);
+    if (i === n - 2) { outgoing = 1 - hand; incoming = clamp((d - 0.30) / 0.24, 0, 1); }
+    for (var k = 0; k < n; k++) {
+      var o = k === i ? outgoing : (k === i + 1 ? incoming : 0);
+      beats[k].style.opacity = o;
+      beats[k].classList.toggle('on', o > 0.5);
+    }
+    cue.style.setProperty('--cueO', clamp(1 - p * 6, 0, 1).toFixed(2));
+  }
+
+  addEventListener('scroll', function(){
+    if (!ticking) { ticking = true; requestAnimationFrame(function(){ frame(); ticking = false; }); }
+  }, { passive: true });
+  addEventListener('resize', frame);
+  frame();
+})();
+</script>
+</body>
+</html>
