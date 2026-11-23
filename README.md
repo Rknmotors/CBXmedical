@@ -1,15 +1,43 @@
 # CBX Medical — botanical storefront (preview)
 
-A design proposal for CBX Medical. Static site: no build step, no server.
+A design proposal for CBX Medical. Static site: no build step needed to view it,
+no server, no database.
 
-## Publish on GitHub Pages
-1. New public repository, e.g. `cbx-medical`.
-2. Upload **the contents of this folder** (so `index.html` sits at the root of the repo).
-3. Settings → Pages → Source: *Deploy from a branch* → `main` / `root` → Save.
-4. The link appears a minute later: `https://<account>.github.io/cbx-medical/`
+## Pages
+| file | what it is |
+|---|---|
+| `index.html` | home — the opening sequence and three highlights |
+| `shop.html` | the twelve products, filterable by range |
+| `commitment.html` | where we stand, the quote, the legal notice |
+| `professionals.html` | training and R&D |
+| `journal.html` | what CBX publishes |
 
-The shopping bag and the handoff to the official CBX checkout work on Pages as they
-are — variant lookups go straight from the browser to the CBX catalogue, so the
-Node server from the full package is not needed here.
+`index.html` is the only place the shell lives — navigation, footer, bag and
+scripts. The other four pages are generated from it plus the fragments in
+`content/`. After editing `index.html`, `botanical.css`, `shop.js` or anything in
+`content/`, run:
 
-Product photography: CBX Medical. Prices are a snapshot of 23 Nov 2026.
+    node build.mjs
+
+It rebuilds the four pages and fails loudly if a navigation or footer has drifted.
+
+## The bag
+Lives in the browser (`localStorage`, key `cbx-bag-v1`), so it follows the visitor
+from page to page and survives a refresh. On checkout the product handles are
+resolved against the live CBX catalogue and handed to the CBX cart permalink:
+
+    https://cbxmedical.com/en/cart/<variantId>:<qty>,<variantId>:<qty>
+
+CBX Medical owns pricing, stock, promotions, payment and delivery from there. If the
+shop cannot be reached, the bag is kept and the visitor gets direct product links.
+
+## Open points
+- Prices are a snapshot of 23 Nov 2026. The shop runs an automatic BLACK FRIDAY
+  promotion, so the checkout total can be lower than the estimate in the bag.
+- "3,000+ health professionals trained" and the R&D partnerships are claims carried
+  over from the current CBX site; they should be substantiated before launch.
+- Journal links, event dates and press names point at the shop home page until the
+  real URLs are supplied.
+- No new medical claim has been added anywhere.
+
+Product photography: CBX Medical. Botanical cover: generated for this design.

@@ -185,7 +185,7 @@ img{display:block;max-width:100%}
 
 /* ---------------- shop ---------------- */
 .store{position:relative;background:var(--bark2);padding:clamp(64px,9vh,120px) 0 clamp(70px,10vh,130px);scroll-margin-top:var(--navh)}
-.store::before{
+#collection::before{
   content:"";position:absolute;inset:auto 0 100% 0;height:190px;pointer-events:none;
   background:radial-gradient(60% 100% at 50% 100%,rgba(212,165,60,.22),transparent 70%);
 }
@@ -202,7 +202,7 @@ img{display:block;max-width:100%}
 .filters button:hover{border-color:var(--gold2)}
 .filters button[aria-pressed=true]{background:var(--ivory);border-color:var(--ivory);color:#0A160F}
 
-#grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,2.6vw,34px)}
+#grid,#teaser{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,2.6vw,34px)}
 .card{display:flex;flex-direction:column;min-width:0}
 .tile{
   position:relative;display:grid;place-items:center;overflow:hidden;
@@ -229,6 +229,23 @@ img{display:block;max-width:100%}
   transition:background-color .3s,border-color .3s,color .3s;
 }
 .addbtn:hover{background:var(--gold);border-color:var(--gold);color:#0A160F}
+
+/* ---------------- page headers ---------------- */
+.pagehead{
+  position:relative;overflow:hidden;background:var(--bark);
+  padding:calc(var(--navh) + clamp(54px,9vh,112px)) 0 clamp(34px,6vh,70px);
+  border-bottom:1px solid var(--line2);
+}
+.pagehead .leafmark{
+  position:absolute;right:-7%;top:-36%;width:clamp(260px,34vw,560px);
+  color:#0E2217;pointer-events:none;transform:rotate(18deg);
+}
+.pagehead h1{font-size:clamp(2.4rem,6vw,5rem);letter-spacing:-.035em;margin-bottom:.32em;position:relative}
+.pagehead .kicker,.pagehead .lede{position:relative}
+.pagehead .lede{max-width:46ch}
+.pagehead + .store,.pagehead + .flow{padding-top:clamp(42px,6vh,78px)}
+.navlinks a[aria-current=page]{opacity:1;color:var(--gold2)}
+@media(max-width:760px){.pagehead .leafmark{right:-30%;top:-12%;width:300px;opacity:.7}}
 
 /* ---------------- flow sections ---------------- */
 section.flow{padding:clamp(64px,9vh,130px) 0;scroll-margin-top:var(--navh)}
@@ -318,7 +335,7 @@ dialog#bag::backdrop{background:rgba(3,9,6,.78);backdrop-filter:blur(3px)}
 /* ---------------- responsive ---------------- */
 @media(min-width:761px){.navlinks .always{display:none}}
 @media(max-width:1000px){
-  #grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #grid,#teaser{grid-template-columns:repeat(2,minmax(0,1fr))}
   .proof{grid-template-columns:1fr 1fr}
   .proof div:nth-child(2n){border-right:0}
   .proof div:nth-child(-n+2){padding-bottom:18px;border-bottom:1px solid var(--line2)}
@@ -357,7 +374,7 @@ dialog#bag::backdrop{background:rgba(3,9,6,.78);backdrop-filter:blur(3px)}
   .strengths button{padding:15px 18px}
 }
 @media(max-width:430px){
-  #grid{grid-template-columns:1fr;gap:26px}
+  #grid,#teaser{grid-template-columns:1fr;gap:26px}
   .tile{aspect-ratio:1/1}
   .cardfoot{flex-wrap:wrap}
 }

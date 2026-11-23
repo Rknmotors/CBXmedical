@@ -1,5 +1,7 @@
 'use strict';
 /* CBX Medical — catalogue, bag and handoff to the official checkout.
+   Runs on every page. Each block only wires itself up if its markup is present,
+   so the same file serves the home page, the shop and the editorial pages.
    Names, prices and handles follow the live catalogue at
    https://cbxmedical.com/en/collections/all (checked 23 Nov 2026). */
 
@@ -28,10 +30,11 @@ const money = v => euro.format(v);
 const photo = key => 'products/' + key + '.webp';
 const productUrl = handle => STORE + '/products/' + handle;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-
 const $ = sel => document.querySelector(sel);
-const grid = $('#grid'), filters = $('#filters'), dialog = $('#bag');
-const feedback = $('#feedback'), toastEl = $('#toast');
+
+const grid = $('#grid'), filters = $('#filters'), teaser = $('#teaser');
+const dialog = $('#bag'), feedback = $('#feedback'), toastEl = $('#toast');
+const strengthBox = $('#strengths');
 
 /* ------------------------------------------------ bag state */
 const STORAGE = 'cbx-bag-v1';
@@ -48,6 +51,7 @@ function persist() {
 
 let toastTimer;
 function toast(message) {
+  if (!toastEl) return;
   toastEl.textContent = message;
   toastEl.classList.add('show');
   clearTimeout(toastTimer);
@@ -59,95 +63,124 @@ function add(key, step = 1) {
   const next = Math.min(99, (bag[key] || 0) + step);
   if (next <= 0) delete bag[key]; else bag[key] = next;
   persist();
-  feedback.textContent = '';
+  if (feedback) feedback.textContent = '';
   renderBag();
 }
 
-/* ------------------------------------------------ grid */
-let activeRange = 'All';
+/* a bag opened in one tab should be right in the others too */
+addEventListener('storage', event => {
+  if (event.key !== STORAGE) return;
+  try {
+    const saved = JSON.parse(event.newValue || '{}');
+    bag = Object.fromEntries(Object.entries(saved).filter(
+      ([k, q]) => BY_KEY.has(k) && Number.isInteger(q) && q > 0 && q <= 99));
+  } catch { bag = {}; }
+  renderBag();
+});
 
-function renderGrid(range) {
-  activeRange = range;
-  for (const button of filters.children) {
-    button.setAttribute('aria-pressed', String(button.dataset.range === range));
-  }
-  grid.innerHTML = PRODUCTS
-    .filter(p => range === 'All' || p[3] === range)
-    .map(([key, title, handle, family, format, price]) => `
-      <article class="card" data-range="${family}">
-        <a class="tile" href="${productUrl(handle)}" target="_blank" rel="noopener" aria-label="${esc(title)} on the official CBX shop">
-          <img loading="lazy" src="${photo(key)}" alt="${esc(title)}" width="400" height="500">
-        </a>
-        <div class="cardmeta"><small>${family.toUpperCase()} · ${esc(format.toUpperCase())}</small></div>
-        <h3><a href="${productUrl(handle)}" target="_blank" rel="noopener">${esc(title)}</a></h3>
-        <div class="cardfoot">
-          <span class="price">${money(price)}</span>
-          <button type="button" class="addbtn" data-add="${key}">Add to bag</button>
-        </div>
-      </article>`).join('');
+/* ------------------------------------------------ product cards */
+function cardMarkup([key, title, handle, family, format, price]) {
+  return `
+    <article class="card" data-range="${family}">
+      <a class="tile" href="${productUrl(handle)}" target="_blank" rel="noopener" aria-label="${esc(title)} on the official CBX shop">
+        <img loading="lazy" src="${photo(key)}" alt="${esc(title)}" width="400" height="500">
+      </a>
+      <div class="cardmeta"><small>${family.toUpperCase()} · ${esc(format.toUpperCase())}</small></div>
+      <h3><a href="${productUrl(handle)}" target="_blank" rel="noopener">${esc(title)}</a></h3>
+      <div class="cardfoot">
+        <span class="price">${money(price)}</span>
+        <button type="button" class="addbtn" data-add="${key}">Add to bag</button>
+      </div>
+    </article>`;
 }
 
-RANGES.forEach(name => {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = name;
-  button.dataset.range = name;
-  button.addEventListener('click', () => renderGrid(name));
-  filters.append(button);
-});
-renderGrid('All');
+function wireAdding(container) {
+  container.addEventListener('click', event => {
+    const key = event.target.closest('[data-add]')?.dataset.add;
+    if (!key) return;
+    add(key, 1);
+    toast(BY_KEY.get(key)[1] + ' added to your bag');
+  });
+}
 
-grid.addEventListener('click', event => {
-  const key = event.target.closest('[data-add]')?.dataset.add;
-  if (!key) return;
-  add(key, 1);
-  toast(BY_KEY.get(key)[1] + ' added to your bag');
-});
+/* the shop page */
+if (grid && filters) {
+  const showRange = range => {
+    for (const button of filters.children) {
+      button.setAttribute('aria-pressed', String(button.dataset.range === range));
+    }
+    grid.innerHTML = PRODUCTS.filter(p => range === 'All' || p[3] === range).map(cardMarkup).join('');
+    const url = new URL(location.href);
+    if (range === 'All') url.searchParams.delete('range'); else url.searchParams.set('range', range);
+    history.replaceState(null, '', url);
+  };
 
-document.querySelectorAll('footer [data-range]').forEach(link => {
-  link.addEventListener('click', () => renderGrid(link.dataset.range));
-});
+  RANGES.forEach(name => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = name;
+    button.dataset.range = name;
+    button.addEventListener('click', () => showRange(name));
+    filters.append(button);
+  });
+
+  const wanted = new URL(location.href).searchParams.get('range');
+  showRange(RANGES.includes(wanted) ? wanted : 'All');
+  wireAdding(grid);
+}
+
+/* the three highlights on the home page */
+if (teaser) {
+  teaser.innerHTML = (teaser.dataset.keys || '').split(',')
+    .map(k => k.trim()).filter(k => BY_KEY.has(k))
+    .map(k => cardMarkup(BY_KEY.get(k))).join('');
+  wireAdding(teaser);
+}
 
 /* ------------------------------------------------ concentration selector */
-const STRENGTHS = [5, 10, 20, 30];
-const strengthBox = $('#strengths');
+if (strengthBox) {
+  const STRENGTHS = [5, 10, 20, 30];
 
-function setStrength(value) {
-  const key = 'd' + value;
-  const [, title, handle, , , price] = BY_KEY.get(key);
-  $('#heroShot').src = photo(key);
-  $('#heroShot').alt = title + ' in amber glass with pipette';
-  $('#roConc').textContent = value + '%';
-  $('#roPrice').textContent = money(price);
-  $('#addStrength').textContent = 'Add to bag — ' + money(price);
-  $('#addStrength').dataset.add = key;
-  $('#strengthLink').href = productUrl(handle);
-  for (const button of strengthBox.children) {
-    button.setAttribute('aria-pressed', String(Number(button.dataset.strength) === value));
-  }
+  const setStrength = value => {
+    const key = 'd' + value;
+    const [, title, handle, , , price] = BY_KEY.get(key);
+    const shot = $('#heroShot');
+    if (shot) { shot.src = photo(key); shot.alt = title + ' in amber glass with pipette'; }
+    $('#roConc').textContent = value + '%';
+    $('#roPrice').textContent = money(price);
+    const button = $('#addStrength');
+    button.textContent = 'Add to bag — ' + money(price);
+    button.dataset.add = key;
+    $('#strengthLink').href = productUrl(handle);
+    for (const b of strengthBox.children) {
+      b.setAttribute('aria-pressed', String(Number(b.dataset.strength) === value));
+    }
+  };
+
+  STRENGTHS.forEach(value => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = value + '%';
+    button.dataset.strength = value;
+    button.setAttribute('aria-label', 'CanRelax Drop ' + value + ' percent');
+    button.addEventListener('click', () => setStrength(value));
+    strengthBox.append(button);
+  });
+  setStrength(10);
+
+  $('#addStrength').addEventListener('click', event => {
+    const key = event.currentTarget.dataset.add;
+    add(key, 1);
+    toast(BY_KEY.get(key)[1] + ' added to your bag');
+  });
 }
-
-STRENGTHS.forEach(value => {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = value + '%';
-  button.dataset.strength = value;
-  button.setAttribute('aria-label', 'CanRelax Drop ' + value + ' percent');
-  button.addEventListener('click', () => setStrength(value));
-  strengthBox.append(button);
-});
-setStrength(10);
-
-$('#addStrength').addEventListener('click', event => {
-  const key = event.currentTarget.dataset.add;
-  add(key, 1);
-  toast(BY_KEY.get(key)[1] + ' added to your bag');
-});
 
 /* ------------------------------------------------ bag panel */
 function renderBag() {
   const entries = Object.entries(bag);
-  $('#count').textContent = entries.reduce((n, [, q]) => n + q, 0);
+  const count = $('#count');
+  if (count) count.textContent = entries.reduce((n, [, q]) => n + q, 0);
+  if (!dialog) return;
 
   $('#baglines').innerHTML = entries.length ? entries.map(([key, q]) => {
     const [, title, handle, family, format, price] = BY_KEY.get(key);
@@ -163,7 +196,7 @@ function renderBag() {
         <button type="button" data-step="1" data-key="${key}" aria-label="One more ${esc(title)}" ${q === 99 ? 'disabled' : ''}>+</button>
       </div>
     </div>`;
-  }).join('') : '<p class="empty">Your bag is empty.</p>';
+  }).join('') : '<p class="empty">Your bag is empty. <a href="shop.html">Browse the collection</a>.</p>';
 
   const total = entries.reduce((sum, [key, q]) => sum + q * BY_KEY.get(key)[5], 0);
   $('#bagfoot').innerHTML = entries.length ? `
@@ -172,15 +205,16 @@ function renderBag() {
     <small>You continue on cbxmedical.com. Availability, promotions, shipping and final prices are set by CBX Medical, so the total there can differ from this estimate.</small>` : '';
 }
 
-$('#openBag').addEventListener('click', () => { if (!dialog.open) dialog.showModal(); });
-$('#closeBag').addEventListener('click', () => dialog.close());
-
-dialog.addEventListener('click', async event => {
-  const step = event.target.closest('[data-step]');
-  if (step) { add(step.dataset.key, Number(step.dataset.step)); return; }
-  if (event.target.id !== 'checkout') return;
-  await checkout(event.target);
-});
+if (dialog) {
+  $('#openBag').addEventListener('click', () => { if (!dialog.open) dialog.showModal(); });
+  $('#closeBag').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', async event => {
+    const step = event.target.closest('[data-step]');
+    if (step) { add(step.dataset.key, Number(step.dataset.step)); return; }
+    if (event.target.id !== 'checkout') return;
+    await checkout(event.target);
+  });
+}
 
 /* ------------------------------------------------ handoff to the official checkout */
 async function resolveVariants(handles) {
