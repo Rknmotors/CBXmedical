@@ -89,7 +89,8 @@ img{display:block;max-width:100%}
 }
 
 .leaves{position:absolute;inset:0;pointer-events:none;will-change:transform}
-.leaves svg{position:absolute;color:#0C1F15}
+.leaves img{position:absolute;height:auto;filter:brightness(.40) saturate(.72) contrast(1.06)}
+.fore img{filter:brightness(.24) saturate(.6) contrast(1.1)}
 .mid{transform:translate3d(0,var(--midY,0),0) scale(var(--midS,1))}
 .fore{transform:translate3d(0,var(--foreY,0),0) scale(var(--foreS,1));filter:blur(11px);opacity:calc(var(--foreO,1) * .72);z-index:6}
 .lf1{left:-14%;top:-18%;width:46vw;min-width:360px;opacity:.85;transform:rotate(14deg)}
@@ -237,8 +238,9 @@ img{display:block;max-width:100%}
   border-bottom:1px solid var(--line2);
 }
 .pagehead .leafmark{
-  position:absolute;right:-7%;top:-36%;width:clamp(260px,34vw,560px);
-  color:#0E2217;pointer-events:none;transform:rotate(18deg);
+  position:absolute;right:-7%;top:-36%;width:clamp(260px,34vw,560px);height:auto;
+  pointer-events:none;transform:rotate(18deg);
+  filter:brightness(.17) saturate(.5) contrast(1.1);opacity:.9;
 }
 .pagehead h1{font-size:clamp(2.4rem,6vw,5rem);letter-spacing:-.035em;margin-bottom:.32em;position:relative}
 .pagehead .kicker,.pagehead .lede{position:relative}
