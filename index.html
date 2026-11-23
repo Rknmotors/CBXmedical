@@ -48,6 +48,10 @@
             <stop offset=".38" stop-color="#E7B95C" stop-opacity=".9"/><stop offset=".56" stop-color="#B07E27"/>
             <stop offset=".82" stop-color="#5B3C0F"/><stop offset="1" stop-color="#2A1B05"/>
           </linearGradient>
+          <linearGradient id="clearG" x1="0" x2="1">
+            <stop offset="0" stop-color="#9FB6A6" stop-opacity=".12"/><stop offset=".30" stop-color="#E8F2E6" stop-opacity=".32"/>
+            <stop offset=".62" stop-color="#9FB6A6" stop-opacity=".15"/><stop offset="1" stop-color="#5C6F62" stop-opacity=".10"/>
+          </linearGradient>
           <linearGradient id="oilG" x1="0" x2="1">
             <stop offset="0" stop-color="#6A3F09"/><stop offset=".28" stop-color="#D9A93A"/>
             <stop offset=".55" stop-color="#9A6714"/><stop offset="1" stop-color="#4A2D05"/>
@@ -84,10 +88,10 @@
         <rect x="160" y="230" width="3" height="340" rx="2" fill="#F7E2A8" opacity=".22"/>
 
         <!-- tapered tip -->
-        <path d="M128 602 L143 706 q7 14 14 0 L172 602 Z" fill="url(#glassG)" opacity=".52"/>
+        <path d="M128 602 L143 706 q7 14 14 0 L172 602 Z" fill="url(#clearG)"/>
         <path d="M128 602 L143 706 q7 14 14 0 L172 602 Z" fill="none" stroke="#F7E2A8" stroke-opacity=".2"/>
-        <path d="M139 614 L147 700 q3 7 6 0 L161 614 Z" fill="url(#oilG)" opacity=".9"/>
-        <path d="M141 618 L146 690" stroke="#F7E2A8" stroke-opacity=".3" stroke-width="2.5" fill="none"/>
+        <path d="M139 614 L143.5 650 q6.5 9 13 0 L161 614 Z" fill="url(#oilG)" opacity=".82"/>
+        <path d="M141 618 L144 644" stroke="#F7E2A8" stroke-opacity=".3" stroke-width="2.5" fill="none"/>
 
         <!-- the drop -->
         <g id="dropG">

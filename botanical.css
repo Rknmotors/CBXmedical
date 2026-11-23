@@ -160,9 +160,15 @@ img{display:block;max-width:100%}
 .panel .note{font-size:12.5px;color:var(--ivory2);opacity:.8;margin:14px 0 0}
 .panel .note a{color:var(--gold2)}
 
+/* the closing beat reads against a lit scene, so each text block gets its own shade */
+.b3{
+  background:
+    radial-gradient(58% 44% at 13% 27%,rgba(4,11,7,.88),transparent 68%),
+    radial-gradient(50% 38% at 85% 77%,rgba(4,11,7,.88),transparent 70%);
+}
 .b3 .inner{display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:12vh 0 10vh}
-.b3 h2{font-size:clamp(2rem,5vw,4.4rem);max-width:12ch}
-.b3 p{align-self:flex-end;max-width:32ch;color:var(--ivory2);margin:0}
+.b3 h2{font-size:clamp(2rem,5vw,4.4rem);max-width:12ch;text-shadow:0 2px 26px rgba(4,11,7,.9)}
+.b3 p{align-self:flex-end;max-width:32ch;color:var(--ivory);margin:0;text-shadow:0 1px 18px rgba(4,11,7,.9)}
 
 .scrollcue{
   position:absolute;left:var(--gut);bottom:26px;z-index:8;
